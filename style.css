@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  background-color: #363636;
+}
+
+body {
+  font-family: "Reddit Mono", monospace;
+  color: white;
+}
+
+header {
+  flex: 0 1 auto;
+  height: 10vh;
+  width: 100vw;
+}
+
+.navbar{
+  position: absolute;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar a{
+  color: #868a90
+}
+
+.navbar .logo{
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .nav-links ul{
+  display: flex;
+}
+
+.navbar .nav-links ul li{
+  margin: 0 25px;
+}
+
+.navbar .nav-links ul li:hover a{
+  color: white;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  
+}
+
+.scramble{
+  width: 100vw;
+  margin-top: 10vw;
+  text-align: center;
+  color: white;
+  word-spacing: 1.25ch;
+}
+
+.timer{
+  margin: 5vw 0;
+  text-align: center;
+  font-size: 10vh;
+}
+
+footer {
+  background-color:  #4d4d4d;
+  line-height: 2em;
+  text-align: center;
+  color: #868a90;
+  position:fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 2em;
+}
+
+footer a {
+  text-decoration: underline;
+  color: #868a90;
+  background-color: transparent;
+}
