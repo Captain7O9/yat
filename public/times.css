@@ -1,0 +1,141 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: "Reddit Mono", monospace;
+  color: white;
+  background-color: #363636;
+}
+
+header {
+  flex: 0 1 auto;
+  height: 10vh;
+  width: 100vw;
+}
+
+.navbar{
+  position: absolute;
+  margin: 50px 0;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar a{
+  color: #a7acb4
+}
+
+.navbar .logo{
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .nav-links ul{
+  display: flex;
+}
+
+.navbar .nav-links ul li{
+  margin: 0 25px;
+}
+
+.navbar .nav-links ul li:hover a{
+  color: white;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  
+}
+
+footer {
+  background-color:  #4d4d4d;
+  line-height: 2em;
+  text-align: center;
+  color: #868a90;
+  position:fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 2em;
+}
+
+footer a {
+  text-decoration: underline;
+  color: #868a90;
+  background-color: transparent;
+}
+
+.times {
+  margin: 6vw 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.time-container {
+  table-layout: auto;
+  width: 100%;
+  flex: auto;
+  border-radius: 100px;
+  padding: 5vw;
+  width: 100%;
+}
+
+.time-container td {
+  border: none;
+  padding: 10px;
+  text-align-last: left;
+
+}
+
+.time-container .scramble {
+  word-spacing: 1.5ch;
+}
+
+.time-container tr {
+  table-layout: auto;
+}
+
+.time-container th {
+  padding-left: 10px;
+  text-align: left;
+  color: #868a90;
+}
+
+.time-container thead th:first-child {
+  padding-left: 20px;
+}
+
+.time-container thead th:last-child {
+  padding-right: 20px;
+}
+
+.time-container tbody tr:nth-of-type(even) td {
+  background-color: #4d4d4d;
+}
+
+.time-container tbody tr td:first-child {
+  padding-left: 20px;
+}
+
+.time-container tbody tr td:last-child {
+  padding-right: 20px;
+}
+
+
+.time-container tbody tr:nth-of-type(even) td:first-child {
+  border-radius: 20px 0 0 20px;
+}
+
+.time-container tbody tr:nth-of-type(even) td:last-child {
+  border-radius: 0 20px 20px 0;
+}

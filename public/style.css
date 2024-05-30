@@ -3,12 +3,12 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
-  background-color: #363636;
 }
 
 body {
   font-family: "Reddit Mono", monospace;
   color: white;
+  background-color: #363636;
 }
 
 header {
@@ -19,7 +19,8 @@ header {
 
 .navbar{
   position: absolute;
-  padding: 50px;
+  margin: 50px 0;
+  padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +29,7 @@ header {
 }
 
 .navbar a{
-  color: #868a90
+  color: #a7acb4
 }
 
 .navbar .logo{
@@ -67,7 +68,7 @@ header {
 .timer{
   margin: 5vw 0;
   text-align: center;
-  font-size: 10vh;
+  font-size: 7.5vw;
 }
 
 footer {

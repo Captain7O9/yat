@@ -1,23 +1,3 @@
-// dark/light favicon (blatantly copied from stackoverflow)
-
-lightSchemeIcon = document.querySelector('link#light-scheme-icon');
-darkSchemeIcon = document.querySelector('link#dark-scheme-icon');
-
-matcher = window.matchMedia('(prefers-color-scheme: dark)');
-matcher.addListener(onUpdate);
-onUpdate();
-
-function onUpdate() {
-  if (matcher.matches) {
-    lightSchemeIcon.remove();
-    document.head.append(darkSchemeIcon);
-  } else {
-    document.head.append(lightSchemeIcon);
-    darkSchemeIcon.remove();
-  }
-}
-
-
 const timerDisplay = document.getElementById('timer');
 const scrambleUrl = '127.0.0.1:8080/scramble/'
 
@@ -64,7 +44,8 @@ function updateTimer() {
 function stopTimer() {
   clearInterval(timerInterval);
   isTimerTiming = false
-
+  const scramble = document.getElementById('scramble')
+  createTime(1, scramble.innerText, scramble.innerText.length, milliseconds)
 }
 
 function resetTimer() {
@@ -90,6 +71,7 @@ function handleKeyPress(event) {
       resetTimer()
     } else {
       stopTimer()
+
     }
   }
 }
@@ -110,6 +92,21 @@ async function getScramble(event) {
 
 async function changeScramble(event) {
   scramble.innerText = await getScramble(event)
+}
+
+async function createTime(user_id, scramble, scramble_size, time) {
+  const response = await fetch('/time', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user_id: user_id,
+      scramble: scramble,
+      scramble_size: scramble_size,
+      time: time
+    })
+  })
 }
 
 initTimer()

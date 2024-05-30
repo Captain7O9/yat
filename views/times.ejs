@@ -9,9 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet"/>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="img/logo-light.png" id="light-scheme-icon">
-    <link rel="icon" href="img/logo-dark.png" id="dark-scheme-icon">
+    <link rel="stylesheet" href="/times.css"/>
+    <link rel="icon" href="../img/logo-light.png" id="light-scheme-icon">
+    <link rel="icon" href="../img/logo-dark.png" id="dark-scheme-icon">
+    <script src="/icon.js"></script>
 
 
   </head>
@@ -19,11 +20,11 @@
   <body>
     <header>
       <nav class="navbar">
-        <a href="#" class="logo">yat</a>
+        <a href="/" class="logo">yat</a>
         <div class="nav-links">
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/times">Times</a></li>
+            <li><a href="/times/1">Times</a></li>
             <li><a href="#">Ipsum</a></li>
             <li><a href="#">Dolor Sit</a></li>
             <li><a href="#">Amet</a></li>
@@ -33,14 +34,64 @@
     </header>
     
     <div class="content">
-      <div class="scramble">
-          R' U D R U F' R' L2 D' F U' B' R2 D L' D R D' B D' B R L2 D' B2
-      </div>
+      <div class="times">
 
-      <div class="timer" id="timer">
-        0.00
-      </div>
+        <table class="time-container" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Scramble</th>
+              <th>ao5</th>
+              <th>ao12</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% times.forEach(time => { %>
+              <tr>
+                <td class="time"><%= time.time %></td>
+                <td class="scramble"><%= time.scramble %></td>
+                <td class="ao5">(18.736)</td>
+                <td class="ao12">(16.234)</td>
+                <% const date = new Date(time.date) %>
+                <td class="date"><%= date.toLocaleDateString('en-gb', {day:"numeric", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit"}) %></td>
+                <!-- en-gb makes date D MMM YYYY, HH:MM (24h format), which is cool-->
+              </tr>
+              <% })%>
 
+
+            <!-- <tr>
+                <td class="time">32.567</td>
+                <td class="scramble">R' U D R U F' R' L2 D' F U' B' R2 D L' D R D' B D' B R L2 D' B2</td>
+                <td class="ao5">18.736</td>
+                <td class="ao12">16.234</td>
+                <td class="date">26 Feb 2024 14:55</td>
+            </tr> -->
+
+          </tbody>
+          
+         
+
+
+
+
+
+
+
+
+
+        <!--        <ul>
+          <% times.forEach(time => { %>
+            <li>
+              <h2><%= time.scramble %></h2>
+              <p><%= time.time %></p>
+            </li>
+          
+
+          <% })%>
+        </ul>                             -->
+      </table>
+      </div>
     </div>
 
     <footer>
