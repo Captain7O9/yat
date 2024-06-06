@@ -109,5 +109,7 @@ async function createTime(user_id, scramble, scramble_size, time) {
   })
 }
 
+
+
 initTimer()
 document.addEventListener('keydown', handleKeyPress);
