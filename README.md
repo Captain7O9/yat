@@ -1,6 +1,6 @@
 # yat
 
-Yet Another Timer (yat) is the result of me wanting to learn to code, wanting to get a fully free open-source rubik's cube timer, and not having inspiration for project titles. Fun fact: it is an excuse for me to not learn my PLLs.
+Yet Another Timer (yat) is the result of me wanting to learn to code, wanting to get a fully free open-source Rubik's Cube timer, and not having inspiration for project titles. Fun fact: it's also an excuse for me not to learn my PLLs.
 
 <br>
 
