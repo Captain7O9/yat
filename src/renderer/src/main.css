@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'RedditMono';
+    src: url('./assets/RedditMono-VariableFont_wght.ttf');
+  }
+
+  html {
+    font-family: 'RedditMono';
+  }
+}
+
+@layer components {
+  .sidebar-icon {
+    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center shadow-lg hover:rounded hover:bg-cyan-500 hover:text-white;
+  }
+
+  .sidebar-tooltip {
+    @apply absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-950 p-2 text-xs font-bold text-white shadow-md transition-all duration-100;
+  }
+}
