@@ -6,4 +6,4 @@ Yet Another Timer (yat) is the result of me wanting to learn to code, wanting to
 
 ---
 
-License: [MIT](https://github.com/Captain7O9/yat/blob/main/LICENSE)
+License: [MIT](https://github.com/Captain7O9/yat/blob/main/LICENSE.md)
