@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { Scrambow } from 'scrambow';
 
 function Timer() {
+  const scramble3x3 = new Scrambow();
+
   const [startTime, setStartTime] = useState(null);
   const [now, setNow] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
+  const [scramble, setScramble] = useState(scramble3x3.get());
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -39,6 +43,9 @@ function Timer() {
   function handleStop() {
     setIsRunning(false);
     clearInterval(intervalRef.current);
+
+    // Generate new scramble
+    setScramble(scramble3x3.get());
   }
 
   let secondPassed = 0;
@@ -52,8 +59,10 @@ function Timer() {
         <div className="flex-initial text-center text-9xl" id="timer">
           {isRunning ? secondPassed.toFixed(1) : secondPassed.toFixed(3)}
         </div>
-        <div className="mt-10 flex-initial text-center text-2xl [word-spacing:1rem]">
-          R' L' U' D2 R' B' R D' L' B U2 B2 R2 D R' L' B2 F R' D B2 R F D' L'
+        <div
+          className={`mt-10 flex-initial text-center text-2xl [word-spacing:1rem] ${isRunning ? 'opacity-0' : 'opacity-100'}`}
+        >
+          {scramble[0].scramble_string}
         </div>
       </div>
     </>

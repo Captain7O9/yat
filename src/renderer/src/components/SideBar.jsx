@@ -30,11 +30,13 @@ function SideBar({ onSelectItem }) {
 
 const SideBarIcon = ({ icon, tooltip = 'tooltip 💡', onClick, selected }) => (
   <div
-    className={`sidebar-icon group ${selected ? 'rounded bg-cyan-500' : ''}`}
+    className={`group relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center shadow-lg hover:rounded hover:bg-cyan-500 hover:text-white ${selected ? 'rounded bg-cyan-500' : ''}`}
     onClick={onClick}
   >
     <img src={icon} />
-    <span className="sidebar-tooltip group-hover:scale-100">{tooltip}</span>
+    <span className="absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-700 p-2 text-xs font-bold text-white shadow-md transition-all duration-100 group-hover:scale-100">
+      {tooltip}
+    </span>
   </div>
 );
 
