@@ -19,6 +19,6 @@
   }
 
   .sidebar-tooltip {
-    @apply absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-950 p-2 text-xs font-bold text-white shadow-md transition-all duration-100;
+    @apply absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-700 p-2 text-xs font-bold text-white shadow-md transition-all duration-100;
   }
 }
