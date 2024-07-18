@@ -11,30 +11,34 @@ function SideBar({ onSelectItem }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <div className="fixed left-0 top-0 flex h-screen w-16 flex-col items-center justify-center bg-neutral-700">
-      {items.map((item, index) => (
-        <SideBarIcon
-          key={index}
-          icon={item.icon}
-          alt={item.alt}
-          selected={selectedIndex === index}
-          onClick={() => {
-            setSelectedIndex(index);
-            onSelectItem(item.alt);
-          }}
-        />
-      ))}
-    </div>
+    <>
+      <div className="group/sidebar fixed left-0 top-0 h-screen w-32">
+        <div className="fixed left-0 top-0 flex h-screen w-16 -translate-x-16 flex-col items-center justify-center bg-neutral-700 transition-all duration-100 group-hover/sidebar:translate-x-0">
+          {items.map((item, index) => (
+            <SideBarIcon
+              key={index}
+              icon={item.icon}
+              alt={item.alt}
+              selected={selectedIndex === index}
+              onClick={() => {
+                setSelectedIndex(index);
+                onSelectItem(item.alt);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
 const SideBarIcon = ({ icon, tooltip = 'tooltip 💡', onClick, selected }) => (
   <div
-    className={`group relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center shadow-lg hover:rounded hover:bg-cyan-500 hover:text-white ${selected ? 'rounded bg-cyan-500' : ''}`}
+    className={`group/icon relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center shadow-lg hover:rounded hover:bg-cyan-500 ${selected ? 'rounded bg-cyan-500' : ''}`}
     onClick={onClick}
   >
     <img src={icon} />
-    <span className="absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-700 p-2 text-xs font-bold text-white shadow-md transition-all duration-100 group-hover:scale-100">
+    <span className="absolute left-14 top-0 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-neutral-700 p-2 text-xs font-bold text-white transition-all duration-100 group-hover/icon:scale-100">
       {tooltip}
     </span>
   </div>
