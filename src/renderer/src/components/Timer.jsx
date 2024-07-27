@@ -6,6 +6,7 @@ import Options from './Options';
 function Timer({ onRunningChange }) {
   const scramble3x3 = new Scrambow();
 
+  const [isKeyDown, setIsKeyDown] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [now, setNow] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
@@ -18,7 +19,7 @@ function Timer({ onRunningChange }) {
   }, [isRunning]);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyUp = (event) => {
       if (event.code === 'Space') {
         if (!isRunning) {
           handleStart();
@@ -27,13 +28,20 @@ function Timer({ onRunningChange }) {
         }
       }
     };
-
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyUp);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleKeyUp);
     };
   }, [isRunning]);
+
+  async function createTime(time, date, type, scramble) {
+    try {
+      await window.api.createTime(time, date, type, scramble);
+    } catch (error) {
+      console.error('Error creating time :', error);
+    }
+  }
 
   function handleStart() {
     setIsRunning(true);
@@ -41,7 +49,6 @@ function Timer({ onRunningChange }) {
     setStartTime(Date.now());
     setNow(Date.now());
 
-    clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setNow(Date.now());
     }, 10);
@@ -73,24 +80,22 @@ function Timer({ onRunningChange }) {
   }
 
   return (
-    <>
-      <div className="flex h-screen flex-grow flex-col justify-center bg-neutral-800 text-white">
-        <Options
-          onPlus2={handlePlus2}
-          onDNF={handleDNF}
-          onDelete={handleDelete}
-          isRunning={isRunning}
-        />
-        <div className="flex-initial text-center text-9xl" id="timer">
-          {isRunning ? secondPassed.toFixed(1) : secondPassed.toFixed(3)}
-        </div>
-        <div
-          className={`mt-10 flex-initial text-center text-2xl [word-spacing:1rem] ${isRunning ? 'opacity-0' : 'opacity-100'}`}
-        >
-          {scramble[0].scramble_string}
-        </div>
+    <div className="flex h-screen flex-grow flex-col justify-center bg-neutral-800 text-white">
+      <Options
+        onPlus2={handlePlus2}
+        onDNF={handleDNF}
+        onDelete={handleDelete}
+        isRunning={isRunning}
+      />
+      <div className="flex-initial text-center text-9xl" id="timer">
+        {isRunning ? secondPassed.toFixed(1) : secondPassed.toFixed(3)}
       </div>
-    </>
+      <div
+        className={`mt-10 flex-initial text-center text-2xl [word-spacing:1rem] ${isRunning ? 'opacity-0' : 'opacity-100'}`}
+      >
+        {scramble[0].scramble_string}
+      </div>
+    </div>
   );
 }
 

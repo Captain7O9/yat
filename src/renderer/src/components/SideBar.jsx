@@ -1,34 +1,36 @@
 import { useState } from 'react';
 
 import rubiksCube3x3Icon from '../assets/3x3.svg';
+import profileIcon from '../assets/profile.svg';
 
-function SideBar({ onSelectItem }) {
+function SideBar({ onSelectItem, isRunning }) {
   const items = [
+    { icon: profileIcon, alt: 'Profile' },
     { icon: rubiksCube3x3Icon, alt: '3x3' },
     { icon: rubiksCube3x3Icon, alt: '4x4' },
   ];
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   return (
-    <>
-      <div className="group/sidebar fixed left-0 top-0 h-screen w-32">
-        <div className="fixed left-0 top-0 flex h-screen w-16 -translate-x-16 flex-col items-center justify-center bg-neutral-700 transition-all duration-100 group-hover/sidebar:translate-x-0">
-          {items.map((item, index) => (
-            <SideBarIcon
-              key={index}
-              icon={item.icon}
-              alt={item.alt}
-              selected={selectedIndex === index}
-              onClick={() => {
-                setSelectedIndex(index);
-                onSelectItem(item.alt);
-              }}
-            />
-          ))}
-        </div>
+    <div className="group/sidebar fixed left-0 top-0 h-screen w-32">
+      <div
+        className={`fixed left-0 top-0 flex h-screen w-16 -translate-x-16 flex-col items-center justify-center bg-neutral-700 transition-all duration-100 ${isRunning ? '-translate-x-16' : 'group-hover/sidebar:translate-x-0'}`}
+      >
+        {items.map((item, index) => (
+          <SideBarIcon
+            key={index}
+            icon={item.icon}
+            alt={item.alt}
+            selected={selectedIndex === index}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item.alt);
+            }}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 

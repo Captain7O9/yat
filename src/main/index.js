@@ -1,7 +1,9 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
+
 import icon from '../../resources/icon.png?asset';
+import db from './database';
 
 function createWindow() {
   // Create the browser window.
@@ -70,5 +72,65 @@ app.on('window-all-closed', () => {
   }
 });
 
+// Close db
+app.on('before-quit', () => {
+  db.close();
+});
+
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+// db init
+db.serialize(() => {
+  const createTableSQL = `
+    CREATE TABLE IF NOT EXISTS times ( 
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      time INTEGER,
+      date TEXT NOT NULL,
+      type TEXT CHECK (type IN ( '2x2', '3x3', '4x4', '5x5', '6x6', '7x7', 'square1', 'megaminx', 'pyraminx', 'skewb', 'clock')),
+      scramble TEXT NOT NULL
+    );
+  `;
+  db.run(createTableSQL);
+
+  // defula values
+  const createDefaultValue = `
+  INSERT INTO times (time, date, type, scramble) VALUES
+  (?, ?, ?, ?)
+  `;
+  db.run(createDefaultValue, [
+    12345,
+    Date.now(),
+    '3x3',
+    'U R2 F B R B2 R U2 L B2 R U L2 U2 F2',
+  ]);
+});
+
+ipcMain.handle('fetch-times', (event) => {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM times', (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+});
+
+ipcMain.handle('create-time', (event, time, date, type, scramble) => {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `INSERT INTO times (time, date, type, scramble)
+       VALUES (?, ?, ?, ?)`,
+      [time, date, type, scramble],
+      (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      }
+    );
+  });
+});

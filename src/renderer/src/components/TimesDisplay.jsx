@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import cross from '../assets/cross.svg';
-
 function TimesDisplay({ isRunning }) {
   return (
     <div className="group/times-display fixed inset-y-0 right-0 top-0 w-96">
